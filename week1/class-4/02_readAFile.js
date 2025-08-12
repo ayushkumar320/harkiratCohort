@@ -5,7 +5,7 @@ const fs = require("fs"); // This line imports the fs module which provides file
 
 // fs.readFile() is an async function!
 
-fs.readFile("a.txt", "utf-8", function (err, data) {
+fs.readFile("a.txt", "utf-8", function (err, data) {  
   console.log(data); // This will print the content of a.txt file
 });
 
