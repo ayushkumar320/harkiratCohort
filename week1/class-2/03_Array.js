@@ -14,7 +14,7 @@ function pushExample(arr, element) {
 }
 pushExample([1, 2, 3], 4);
 
-// pop()
+// pop() - Removes the last element from the array
 function popExample(arr) {
   console.log("Original Array:", arr);
 
@@ -23,7 +23,7 @@ function popExample(arr) {
 }
 popExample([1, 2, 3]);
 
-// shift()
+// shift() - Removes the first element from the array
 function shiftExample(arr) {
   console.log("Original Array:", arr);
 
@@ -32,7 +32,7 @@ function shiftExample(arr) {
 }
 shiftExample([1, 2, 3]);
 
-// unshift()
+// unshift() - Adds an element to the beginning of the array
 function unshiftExample(arr, element) {
   console.log("Original Array:", arr);
 
@@ -50,7 +50,7 @@ function concatExample(arr1, arr2) {
 }
 concatExample([1, 2, 3], [4, 5, 6]);
 
-// forEach()
+// forEach() - inside callback we can access (item, index, array)
 function forEachExample(arr) {
   console.log("Original Array:", arr);
 
