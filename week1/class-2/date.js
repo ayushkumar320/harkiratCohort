@@ -35,3 +35,21 @@ function dateMethods() {
 
 // Example Usage for Date Methods
 dateMethods();
+
+// Usecase of date class
+
+function calculateSum(){
+  let a = 0;
+  for (let i = 1; i <= 10000000; i++) {
+    a += i;
+  }
+  return a;
+}
+
+const beforeTime = new Date();
+const beforeTimeInMs = beforeTime.getTime();
+calculateSum();   // Calling the function
+const afterTime = new Date();
+const afterTimeInMs = afterTime.getTime();
+
+console.log("Time taken:", afterTimeInMs - beforeTimeInMs, "ms");
