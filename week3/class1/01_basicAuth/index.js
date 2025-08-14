@@ -27,6 +27,7 @@ app.get("/health-checkup", function (req, res) {
   });
 });
 
+// Here the probllem in this authentication is, if we need to check the same username and pass credential for more routes, we will need to rewrite the same code which will break the DRY principle, so to tackle this issue, and save ourselves from repeating the same code, we introduce middlewares which checks the auth for us.
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
