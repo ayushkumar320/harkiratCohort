@@ -9,3 +9,4 @@ function validateInput(arr){
 
 validateInput([1, 2, 3]);
 // validateInput([1, "2", 3]); Throws an error
+// validateInput("not an array"); Throws an error
