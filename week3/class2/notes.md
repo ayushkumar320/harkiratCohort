@@ -33,3 +33,16 @@
 - It allows you to verify the authenticity of the claims using a digital signature.
 - A JWT is typically composed of three parts: Header, Payload, and Signature.
 - It is commonly used for authentication and information exchange in web applications.
+
+## Local Storage 
+- Local Storage is a web storage mechanism that allows websites to store data in the user's browser.
+- Generally, it is used to store key-value pairs and can persist even after the browser is closed.
+- JSON web tokens (JWT) can be stored in Local Storage for client-side authentication.
+- When we logout, we should remove the JWT from Local Storage to prevent unauthorized access.
+
+## Things in a nutshell
+- The frontend sends a JWT in the Authorization header when making requests to protected resources.
+- The server verifies the JWT and grants access if it is valid.
+- Local Storage is used to store the JWT on the client-side.
+- Hashing is used to securely store passwords in the database.
+- Encryption is used to protect sensitive data during transmission.
