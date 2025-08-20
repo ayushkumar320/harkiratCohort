@@ -1,0 +1,39 @@
+*{
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  background-color: #212121;
+}
+h1{
+  color: white;
+}
+.calculator {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+  width: 300px;
+}
+input {
+  padding: 10px;
+  border-radius: 8px;
+  color: black;
+}
+button {
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+#result {
+  margin-top: 20px;
+}

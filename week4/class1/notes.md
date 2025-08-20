@@ -81,3 +81,38 @@
       }
     ```
 
+## Debouncing and Throttling
+- Debouncing and throttling are techniques used to optimize performance and improve user experience in web applications, especially when dealing with events that fire frequently (e.g., scrolling, resizing, keypresses).
+
+### Debouncing
+- Debouncing ensures that a function is only executed after a certain period of inactivity. It prevents a function from being called multiple times in quick succession.
+- Common use case: Validating user input in a search box after the user stops typing.
+
+### Throttling
+- Throttling limits the number of times a function can be called over a specific period. It ensures that a function is executed at most once in a given time frame.
+- Common use case: Handling scroll events to improve performance by reducing the number of times a function is called while scrolling.
+
+### Our usecase
+- So till now in `02_backendWay/script.js`, we have implemented a basic backend call to fetch the sum of two numbers.
+- Now, we can enhance the user experience by implementing debouncing or throttling when the user interacts with the input fields.
+- The implementation includes: It should automatically fetch the sum when the user stops typing for a certain period (debouncing) or limit the number of requests sent to the server while the user is typing (throttling). In simple words, user should not have to click on calulate sum button to calulate the sum, this can be done by listening to the input events and applying the debouncing or throttling logic.
+- The button part can be done as follows by introducing the oninput attribute in which we call the populateDiv function:
+  ```js
+    <div class="calculator">
+      <input oninput="populateDiv()" type="text" id="num1" placeholder="Enter first number" required>
+      <input oninput="populateDiv()" type="text" id="num2" placeholder="Enter second number" required>
+    </div>
+  ```
+- The only problem is it will generate multiple requests to the server as the user types, which can be inefficient and may overwhelm the server with too many requests. It can be further optimized using debouncing or throttling techniques.
+- We can apply debouncing logic which says: Dont send out request immediately, wait for the user to stop typing for a certain period (e.g., 300ms) before sending the request.
+- Simple debounce function which displays result when we stop typing.
+- Make sure to change the oninput attribute to call the debounce function.
+  ```js
+  let timeout;
+  function debouncePopulateDiv() {
+    clearTimeout(timeout);
+    timeout = setTimeout(function() {
+      populateDiv();
+    }, 1000);
+  }
+  ```
