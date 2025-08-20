@@ -43,3 +43,41 @@
   ```
   - .value() is used to get the current value of an input element.
   - Further we can use `parseInt()` to convert the string values to integers.
+
+- The above logic still runs in front-end JavaScript, meaning it executes in the user's browser rather than on a server.
+
+- If you want to perform calculations on the server-side, you would need to use a server-side language (e.g., Node.js, Python, PHP) and send the data to the server for processing.
+
+- Refer `02_backendWay` to know how server side processing looks like
+
+## Backend way to hit request
+- We can use fetch to hit backend endpoints.
+- What we have done is
+  1. Created a backend server using Express.js which has the route `/sum` to calculate the sum of two numbers under which we are simply accepting the value of a and b from query parameters and calulating the sum in backend.
+  ```js
+    app.get("/sum", (req, res) => {
+      const a = parseInt(req.query.a);
+      const b = parseInt(req.query.b);
+      res.status(200).send(`The sum of ${a} and ${b} is ${a + b}`);
+    });
+  ```
+  2. Now in `script.js` we will use fetch to call this endpoint and get the result and also we are accepting the value from frontend.
+    So inside a function populateDiv(), we have this code:
+    ```js
+      function populateDiv(){
+        const a = document.getElementById("num1").value;
+        const b = document.getElementById("num2").value;
+
+      // Now to send value of a and b in backend,
+        async function getData() {
+          const response = await fetch(`http://localhost:3000/sum?a=${a}&b=${b}`); 
+          // This sends the request to the backend server with values of a and b
+          const result = await response.text(); 
+          // The .text() method reads the response body as text
+          // Now lastly rendering the result
+          document.getElementById("result").innerText = result;
+        }
+        getData();
+      }
+    ```
+
