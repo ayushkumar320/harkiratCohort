@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Todo App</title>
+</head>
+
+<body>
+  <input type="text" id="title" placeholder="Todo title"></input> <br /><br />
+  <input type="text" id="description" placeholder="Todo description"></input> <br /><br />
+
+  <div id="container">
+
+  </div>
+</body>
+<script>
+
+  // Global in-memory state of todos fetched so far
+  const state = [];
+
+  function createChild(title, description, id) {
+    const child = document.createElement("div");
+    const firstGrandParent = document.createElement("div");
+    firstGrandParent.innerHTML = title;
+    const secondGrandParent = document.createElement("div");
+    secondGrandParent.innerHTML = description;
+    const thirdGrandParent = document.createElement("button");
+    thirdGrandParent.innerHTML = "Mark as done";
+    child.appendChild(firstGrandParent);
+    child.appendChild(secondGrandParent);
+    child.appendChild(thirdGrandParent);
+    child.setAttribute("id", id);
+    return child;
+  }
+
+  // Update DOM according to state
+  // State will always be an array
+  // Every element of state will have a title, description and id
+
+
+  function updateDomAccToState(state) {
+    const parent = document.getElementById("container");
+    parent.innerHTML = "";
+    for (let i = 0; i < state.length; i++) {
+      const child = createChild(state[i].title, state[i].description, state[i].id);
+      parent.appendChild(child);
+    }
+  }
+  window.setInterval(async function () {
+    try {
+      const res = await fetch("http://localhost:3000/todos");
+      const json = await res.json();
+      // Add only if not already present
+      if (!state.some(t => t.id === json.id)) {
+        state.push(json);
+      }
+      updateDomAccToState(state);
+    } catch (e) {
+      console.error("Failed to fetch todo", e);
+    }
+  }, 5000);
+
+
+</script>
+
+</html>
