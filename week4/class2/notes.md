@@ -23,3 +23,9 @@
 - No central State
 - State is a term used to describe the current condition or status of the application.
 - The problem can be solved if we can write a function that takes the state as input and updates the TODO app (state-mapping)
+
+# Problem
+- The problem is everytime we are trying to fetch new data from server and update it on the page, the page first clears the existing content before rendering the new content.
+- This leads to a flickering effect and a poor user experience.
+- We need a way to update the DOM without clearing the existing content.
+- React provides a virtual DOM that allows for efficient updates without direct manipulation of the actual DOM.
