@@ -15,9 +15,6 @@
 </body>
 <script>
 
-  // Global in-memory state of todos fetched so far
-  const state = [];
-
   function createChild(title, description, id) {
     const child = document.createElement("div");
     const firstGrandParent = document.createElement("div");
@@ -40,26 +37,18 @@
 
   function updateDomAccToState(state) {
     const parent = document.getElementById("container");
-    parent.innerHTML = "";
+    parent.innerHTML = ""; 
     for (let i = 0; i < state.length; i++) {
       const child = createChild(state[i].title, state[i].description, state[i].id);
       parent.appendChild(child);
     }
   }
-  window.setInterval(async function () {
-    try {
-      const res = await fetch("http://localhost:3000/todos");
-      const json = await res.json();
-      // Add only if not already present
-      if (!state.some(t => t.id === json.id)) {
-        state.push(json);
-      }
-      updateDomAccToState(state);
-    } catch (e) {
-      console.error("Failed to fetch todo", e);
-    }
-  }, 5000);
-
+  window.setInterval(async function() {
+    const res = await fetch("http://localhost:3000/todos");
+    const json = await res.json();
+    updateDomAccToState([json]);
+  })
+  
 
 </script>
 
