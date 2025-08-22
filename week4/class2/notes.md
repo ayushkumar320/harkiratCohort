@@ -32,3 +32,14 @@
 - The goal of react is to calculate the difference between the old DOM and the new DOM (reconciliation) and only update the parts of the DOM that have changed.
 - React DOM tells react which parts of the DOM need to be updated.
 - React native is a framework for building mobile applications using React.
+
+# Creating a react application
+
+- We use a bundler called VITE to create a new React application quickly and efficiently.
+```bash
+npm create vite@latest
+```
+
+- JSX stands for JavaScript XML. It is a syntax extension for JavaScript that allows us to write HTML-like code within JavaScript files. JSX is commonly used with React to describe what the UI should look like.
+- JSX file supports JS as well as some kind of HTML.
+- App component is the main component of a React application. It is usually defined in the `src/App.jsx` file and serves as the entry point for the application.
