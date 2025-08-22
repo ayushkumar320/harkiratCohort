@@ -29,3 +29,6 @@
 - This leads to a flickering effect and a poor user experience.
 - We need a way to update the DOM without clearing the existing content.
 - React provides a virtual DOM that allows for efficient updates without direct manipulation of the actual DOM.
+- The goal of react is to calculate the difference between the old DOM and the new DOM (reconciliation) and only update the parts of the DOM that have changed.
+- React DOM tells react which parts of the DOM need to be updated.
+- React native is a framework for building mobile applications using React.
