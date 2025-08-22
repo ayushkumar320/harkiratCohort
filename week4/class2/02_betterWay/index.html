@@ -47,7 +47,7 @@
     const res = await fetch("http://localhost:3000/todos");
     const json = await res.json();
     updateDomAccToState([json]);
-  })
+  }, 5000)
   
 
 </script>
