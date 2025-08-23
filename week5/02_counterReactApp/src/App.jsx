@@ -30,19 +30,35 @@ function App() {
   // const setCount = useState[1];
 
   // Defining the click handler function
-  function onClickHandler() {
-    setCount(count + 1);
-  }
+  // function onClickHandler() {
+  //   setCount(count + 1);
+  // }
 
   return (
     <div>
       {/* <button onClick={onClickHandler}>Counter {count}</button> */}
       
       {/* We can also use setCount directly */}
-      <button onClick={() => setCount(count + 1)}>Counter {count}</button>
-      
+      {/* <button onClick={() => setCount(count + 1)}>Counter {count}</button> */}
+
+      {/* Using custom component */}
+
+      <CustomButton count = {count} setCount = {setCount}/>
+
     </div>
   )
+}
+
+// Component
+function CustomButton(props) {
+
+  function onClickHandler() {
+    props.setCount(props.count + 1);
+  }
+
+  return <button onClick = {onClickHandler}>
+    Counter {props.count}
+  </button>;
 }
 
 export default App
