@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="buttonParent"></div>
+  </body>
+  <script>
+    
+    // Global state
+    let state = {
+      counter: 0
+    }
+
+    // Button re render 
+    function onButtonPress() {
+      state.counter++;
+      buttonComponentReRender();
+    }
+
+    function buttonComponentReRender() {
+      document.getElementById("buttonParent").innerHTML = "";
+      const component = buttonComponent(state.counter);
+      document.getElementById("buttonParent").appendChild(component);
+    }
+
+    function buttonComponent(count) {
+      const button = document.createElement("button");
+      button.innerHTML = "Counter " + count;
+      button.setAttribute("onclick", "onButtonPress()");
+      return button;
+    }
+
+    // Manually triggering first component to render.
+    buttonComponentReRender();
+  </script>
+</html>
