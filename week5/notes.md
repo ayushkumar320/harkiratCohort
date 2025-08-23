@@ -40,3 +40,28 @@
 - When a component's state changes, a new virtual DOM tree is created.
 - React then compares the new virtual DOM with the previous one (a process called "reconciliation") to determine the minimal set of changes needed to update the real DOM.
 - This approach improves performance by reducing the number of direct manipulations to the real DOM, which can be slow and costly.
+
+# Creating a React Project
+To create a new React project with Vite, run the following command:
+```bash
+npm create vite@latest
+```
+To run the development server:
+```bash
+npm run dev
+```
+- Use the above command to create a new React Project with Vite bundler.
+
+### Few Jargons
+1. JSX - JSX stands for JavaScript XML. It allows us to write HTML elements in JavaScript and place them in the DOM without using functions like `createElement`.
+2. The project will contain a top level `index.html` in which there is only one div with an id of `root`.
+3. This `root` div is where our entire React application will be rendered.
+4. In `src/main.jsx`, we will use `ReactDOM.render()` to render our root component into the `root` div.
+5. The `src/App.jsx` file will contain our main application component or import other components and structure them.
+6. All the react code will get compiled into plain HTML/CSS/JS that can be served to the browser. It can be converted by running the build command.
+  ```bash
+  npm run build
+  ```
+  - The code gets compiled in HTML/CSS/JS which can be seen in the `dist` folder.
+  - After building, we can not make changes to the React code directly. Instead, we need to modify the source files and rebuild the project.
+7. Whenever we want to use a JavaScript variable or function in our JSX, we need to wrap it in curly braces `{}`.
