@@ -12,6 +12,16 @@ const app = express();
 // clears every one second
 
 let numberOfRequestsForUser = {};
+numberOfRequestsForUser.reqCount = 0;
+app.use(function(req, res, next) {
+  numberOfRequestsForUser.reqCount++;
+  if(numberOfRequestsForUser.reqCount > 5) {
+    res.status(404).json({
+      msg: "Request limit reached!"
+    });
+  }
+  next();
+});
 setInterval(() => {
     numberOfRequestsForUser = {};
 }, 1000)
@@ -22,6 +32,10 @@ app.get('/user', function(req, res) {
 
 app.post('/user', function(req, res) {
   res.status(200).json({ msg: 'created dummy user' });
+});
+
+app.listen(3000, function() {
+  console.log(`Server is listening to http://localhost:3000`);
 });
 
 module.exports = app;
