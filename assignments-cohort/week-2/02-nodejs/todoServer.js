@@ -39,11 +39,91 @@
 
   Testing the server - run `npm run test-todoServer` command in terminal
  */
-  const express = require('express');
-  const bodyParser = require('body-parser');
-  
-  const app = express();
-  
-  app.use(bodyParser.json());
-  
-  module.exports = app;
+const express = require("express");
+const bodyParser = require("body-parser");
+const fs = require("fs");
+const path = require("path");
+
+const app = express();
+
+app.use(bodyParser.json());
+
+let todoData = require("./todos.json");
+// console.log(JSON.stringify(todoData));
+
+function saveTodoData() {
+  const todoFilePath = path.join(__dirname, "todos.json");
+  fs.writeFile(todoFilePath, JSON.stringify(todoData, null, 2), (err) => {
+    if (err) {
+      console.error("Error writing to file:", err);
+    } else {
+      console.log("Successfully saved to todos.json");
+    }
+  });
+}
+
+// Routes
+app.get("/todos", function (req, res) {
+  res.json(todoData);
+});
+
+app.get("/todos/:id", function (req, res) {
+  const id = req.params.id;
+  const requiredTodo = todoData.filter(function (obj) {
+    return obj.id == id;
+  });
+  res.json(requiredTodo);
+});
+
+app.post("/todos", function (req, res) {
+  const {id, title, completed, description} = req.body;
+  const newTodo = {
+    id: id,
+    title: title,
+    completed: completed,
+    description: description,
+  };
+  todoData.push(newTodo);
+  saveTodoData();
+  res.status(200).json({
+    msg: "New todo added!",
+    title: newTodo.title,
+  });
+});
+
+app.put("/todos/:id", function(req, res) {
+  const {id, title, completed, description} = req.body;
+  const updatedTodo = {
+    id: id,
+    title: title,
+    completed: completed,
+    description: description,
+  };
+  const todoIndex = todoData.findIndex((todo) => todo.id === req.params.id);
+  if (todoIndex !== -1) {
+    todoData[todoIndex] = updatedTodo;
+    saveTodoData();
+    res.status(200).json({
+      msg: "Todo Updated",
+      title: updatedTodo.title,
+    });
+  } else {
+    res.status(404).json({ msg: "Todo not found" });
+  }
+});
+
+app.delete("/todos/:id", function(req, res) {
+  const todoIndex = todoData.findIndex((todo) => todo.id === req.params.id);
+  if (todoIndex !== -1) {
+    todoData.splice(todoIndex, 1);
+    saveTodoData();
+    res.status(200).json({ msg: "Todo deleted" });
+  } else {
+    res.status(404).json({ msg: "Todo not found" });
+  }
+});
+
+app.listen(3000, function () {
+  console.log(`Server is running at http://localhost:3000/`);
+});
+module.exports = app;

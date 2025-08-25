@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "id": "1",
+    "title": "Buy groceries",
+    "completed": "false",
+    "description": "I should buy groceries"
+  },
+  {
+    "id": "2",
+    "title": "Go to gym",
+    "completed": "false",
+    "description": "Hitting gym from 7-9 pm"
+  }
+]
