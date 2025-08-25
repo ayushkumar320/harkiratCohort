@@ -17,5 +17,27 @@ const fs = require('fs');
 const path = require('path');
 const app = express();
 
+app.get("/files", function(req, res) {
+  fs.readdir("./files", (err, files) => {
+    if (err) {
+      return res.status(500).json({ error: "Failed to list files" });
+    }
+    res.json(files);
+  });
+});
+
+app.get("/file/:filename", function(req, res) {
+  const filePath = path.join(__dirname, "files", req.params.filename);
+  fs.readFile(filePath, "utf8", (err, data) => {
+    if (err) {
+      return res.status(404).send("File not found");
+    }
+    res.send(data);
+  });
+});
+
+app.listen(3000, function() {
+  console.log(`Server is running at port 3000`);
+})
 
 module.exports = app;
