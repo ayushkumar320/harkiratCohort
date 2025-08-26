@@ -62,3 +62,20 @@
 
       export default MemoizedHeader;
     ```
+
+## Keys
+- Keys are generally used in components to help React identify which items have changed, are added, or are removed.
+- Keys should be unique among siblings and stable (i.e., they should not change between renders).
+- Using keys improves performance by allowing React to optimize the rendering process.
+- If we don't provide a key prop, React will use the array index as the key, which can lead to issues with component state and performance.
+  ![alt text](image-1.png)
+```jsx
+  return (
+    <>
+      {todo.map(function (item) {
+        return <Todo key={item.id} title={item.title} description={item.description} />;
+      })}
+    </>
+  )
+```
+  - Here we are giving each component a unique key prop based on its id.
