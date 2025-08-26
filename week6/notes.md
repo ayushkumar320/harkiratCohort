@@ -112,3 +112,23 @@
     </div>
   }
 ```
+
+## Hooks:
+- Hooks are functions that let you use state and other React features without writing a class.
+- The most commonly used hooks are useState and useEffect.
+- Hooks can only be called at the top level of a component or from other custom hooks.
+- Hooks generally starts with the word "use".
+- Example:
+  - `useState`: A hook that lets you add state to your functional components.
+  - `useEffect`: A hook that lets you perform side effects in your components or when the component mounts/unmounts.
+  ```jsx
+    function App() {
+      useEffect(function() {
+        alert("hi");
+      }, []);
+      return <div>Hello World</div>;
+    }
+  ```
+  - The hi alert will only be shown once when the component mounts.
+  - The empty dependency array means that the effect will only run once when the component mounts, similar to componentDidMount in class components.
+    - Dependency array: The second argument to useEffect is an array of dependencies. If any of the dependencies change, the effect will run again.
