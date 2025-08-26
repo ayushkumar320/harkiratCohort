@@ -2,7 +2,11 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
 
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(process.env.MONGODB_URI).then(function() {
+  console.log("Connected to MongoDB");
+}).catch(function(err) {
+  console.error("MongoDB connection error:", err);
+});
 
 const AdminSchema = new mongoose.Schema({
   username: String,
