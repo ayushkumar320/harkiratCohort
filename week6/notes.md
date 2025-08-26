@@ -79,3 +79,36 @@
   )
 ```
   - Here we are giving each component a unique key prop based on its id.
+
+## Wrapper Component
+- A wrapper component is a component which takes another component as an input.
+- It can be used to add additional functionality or styling to the wrapped component.
+- Wrapper components are often used for layout purposes, such as creating a grid or flexbox container.
+- Example: Create a card wrapper which accepts a component and adds a border and padding.
+  ```jsx
+  <CardWrapper innerComponent = {<TextComponent />} />
+  function CardWrapper({innerComponent}) {
+  return <div
+      style={{border: "2px solid black", padding: "1rem", borderRadius: "8px"}}
+    >
+      {innerComponent}
+    </div>
+  }
+  ```
+- Other way: We need to pass children as prop only user {}
+
+```jsx
+  <CardWrapper2>
+    <div>
+      Hi from div
+    </div>
+  </CardWrapper2>
+
+  function CardWrapper2({children}) {
+    return <div
+      style={{border: "2px solid black", padding: "1rem", borderRadius: "8px", margin: "10px"}}
+    >
+      {children}
+    </div>
+  }
+```
