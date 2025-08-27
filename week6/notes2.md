@@ -32,3 +32,10 @@
   - The array of dependencies lets React know when to re-run the effect.
   - If a value in the array changes, the effect will re-run.
   - If the array is empty, the effect runs only once after the initial render.
+
+### useMemo:
+- Memoization refers to the optimization technique of storing the results of expensive function calls and returning the cached result when the same inputs occur again.
+- The `useMemo` hook lets you memoize the result of a calculation so that it only re-computes when its dependencies change.
+- It takes two arguments: a function that computes a value and an array of dependencies.
+- If the dependencies haven't changed since the last render, React will return the cached value instead of re-running the function.
+- This can help improve performance by avoiding unnecessary calculations.
