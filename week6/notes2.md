@@ -39,3 +39,16 @@
 - It takes two arguments: a function that computes a value and an array of dependencies.
 - If the dependencies haven't changed since the last render, React will return the cached value instead of re-running the function.
 - This can help improve performance by avoiding unnecessary calculations.
+
+### useCallback:
+- The `useCallback` hook lets you memoize a callback function so that it only changes if its dependencies change.
+- It takes two arguments: a function and an array of dependencies.
+- If the dependencies haven't changed since the last render, React will return the cached function instead of creating a new one.
+- This can help improve performance by avoiding unnecessary re-renders of child components that rely on the callback.
+- We need useCallback whenever we need to memoize functions as across re-renders the functions are recreated.
+```jsx
+  var a = useCallback(function() {
+    console.log("function a called");
+  }, []);
+```
+- Here it accepts a dependency array as the second argument. This array should include all values from the component scope that the callback function depends on. If any of these values change, the callback function will be recreated.
