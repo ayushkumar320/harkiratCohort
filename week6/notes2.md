@@ -53,11 +53,32 @@
 ```
 - Here it accepts a dependency array as the second argument. This array should include all values from the component scope that the callback function depends on. If any of these values change, the callback function will be recreated.
 
-## Custom Hooks:
-- We can create out own hooks.
-- Custom hooks are functions only, but its name should start with "use" to be recognized by React.
-- Example:
-
+### useRef:
+- The `useRef` hook lets you create a mutable ref object that persists for the full lifetime of the component.
+- It can be used to access and interact with DOM elements directly.
+- It returns a ref object with a `current` property that you can set to the DOM element you want to reference.
+- Unlike state, changing the `current` property does not trigger a re-render of the component.
 ```jsx
+import { useCallback, useEffect, useRef, useState } from 'react'
 
+function App() {
+  const [incomeTax, setIncomeTax] = useState(20000);
+  const divRef = useRef();
+
+  useEffect(() => {
+    setTimeout(() => {
+      divRef.current.innerHTML = "10"
+    }, 5000);
+  }, [])
+
+  const incomeTax = 20000;
+
+  return (
+    <div>
+        hi there, your income tax returns are <div ref={divRef}>{incomeTax}</div>
+    </div>
+  )
+}
+
+export default App;
 ```
