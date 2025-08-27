@@ -13,7 +13,7 @@
 - React will then compare the new virtual dom with the previous one and only update.
 - Till now, if we use useState and change the value, the whole component will re-renders, even the static component re renders.
 - To avoid this, we can use React.memo which is a higher order component that will only re-render the component if its props change.
-  ```jsx
+```jsx
     // Harkirat's way, changing the title
     const [title, setTitle] = useState("my name is ayush");
     function updateTitle() {
@@ -31,7 +31,7 @@
         <Header title="harkirat" />
       </div>
     );
-  ```
+```
   - The whole component will re-render, even the static components when we use useState hook to change the contents.
   - Here the state variable comes under the parent `App` component, so when this state variable is changed, it re-renders the whole App 
   component.
