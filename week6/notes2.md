@@ -52,3 +52,12 @@
   }, []);
 ```
 - Here it accepts a dependency array as the second argument. This array should include all values from the component scope that the callback function depends on. If any of these values change, the callback function will be recreated.
+
+## Custom Hooks:
+- We can create out own hooks.
+- Custom hooks are functions only, but its name should start with "use" to be recognized by React.
+- Example:
+
+```jsx
+
+```
