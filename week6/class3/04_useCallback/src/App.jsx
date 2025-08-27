@@ -53,3 +53,7 @@ const CryptoGainsCalculator = memo(function Child({calculateCryptoReturn}) {
 });
 
 export default App;
+/*
+  useCallback is used to memoize a function so its reference does not change unless its dependencies change.
+  React.memo is used to memoize a component so it only re-renders if its props change.
+*/
