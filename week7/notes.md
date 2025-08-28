@@ -97,3 +97,43 @@ export default App;
   </Routes>
 </BrowserRouter>
 ```
+
+## Lazy Loading:
+
+- We can update the code a little so that React loads the components only when they are needed, rather than all at once. This can improve the performance of our application, especially if we have a lot of components.
+- We can achieve this using React's built-in `React.lazy()` function and the `Suspense` component.
+
+```jsx
+import React, {Suspense, lazy} from "react";
+
+const Dashboard = lazy(() => import("./components/Dashboard"));
+const Landing = lazy(() => import("./components/Landing"));
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Appbar />
+      <Routes>
+        <Route
+          path="/dashboard"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <Dashboard />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <Landing />
+            </Suspense>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+```
+
+- We wrap the component in a `Suspense` fallback to show a loading indicator while the component is being loaded. This improves the user experience by providing feedback that something is happening in the background.
