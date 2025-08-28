@@ -137,3 +137,50 @@ function App() {
 ```
 
 - We wrap the component in a `Suspense` fallback to show a loading indicator while the component is being loaded. This improves the user experience by providing feedback that something is happening in the background.
+
+## Prop Drilling:
+- We should push down the state variables as low as possible in the component tree.
+- As if the state changes, it will only re-render the components that depend on that state, rather than re-rendering the entire component tree.
+- We will store the states in Least Common Ancestor (LCA) of the components which depends on the state.
+```jsx
+import {useState} from 'react';
+function App() {
+  const [count, setCount] = useState(0);
+  return (
+    <div>
+      <Count count = {count} setCount={setCount}/>
+    </div>
+  )
+}
+
+function Count(props) {
+  return <div>
+    Count: {props.count}
+    <Buttons setCount={props.setCount} count={props.count}/>
+  </div>
+}
+
+function Buttons(props) {
+  return <div>
+    <button onClick = {function() {
+      props.setCount(props.count + 1);
+    }}>Increase</button>
+    <button onClick = {function() {
+      props.setCount(props.count - 1);
+    }}>Decrease</button>
+  </div>
+}
+
+export default App;
+```
+- In above code, the component Buttons need the props of `setCount` and `count` to function properly.
+- But we are calling Buttons in Count component, so count componenet needs to accept setCounter as a prop which it sends it down to Buttons. `<Count count = {count} setCount={setCount}/>`
+- This is called prop drilling.
+- We use `Context API` to avoid prop drilling.
+
+## Context API:
+- The Context API allows us to create a context object that can hold state and be accessed by any component within its provider.
+- This eliminates the need to pass props down through every level of the component tree, thus avoiding prop drilling.
+- We can create a context for our count state and provide it at a higher level in the component tree.
+- We can teleport the state variables directly to the components that need them avoiding verbose prop drilling.
+- Context API lets us to to keep all the state logic outside core code.
