@@ -184,3 +184,44 @@ export default App;
 - We can create a context for our count state and provide it at a higher level in the component tree.
 - We can teleport the state variables directly to the components that need them avoiding verbose prop drilling.
 - Context API lets us to to keep all the state logic outside core code.
+
+- First we create a context object using `React.createContext()` and provide it at a higher level in the component tree.
+- Generally we do it in a separate js file
+```jsx
+  // In a context.js file
+  import {createContext} from "react";
+
+  const CounterContext = createContext(0);
+
+  export default CounterContext;
+```
+
+- Now in the main file, we declare the context provider and wrap our component tree with it.
+```jsx
+  import CounterContext from "./context";
+  const [counter, setCounter] = useState(0);
+  function App() {
+    return (
+      <div>
+        <CounterContext.Provider value={{counter, setCounter}}>
+          <Count />
+        </CounterContext.Provider>
+      </div>
+    );
+  }
+
+  // Now if we want to use the state variable in any of the component, we can directly pass or teleport it to that component, without prop drilling which makes the code more readable.
+  
+  // Notice we are not sending any Prop in the Count
+  function Count() {
+    const {counter, setCounter} = useContext(CounterContext);
+    // Now we have access to the counter and setCounter (state variables)
+    return (
+      <div>
+        <p>Count: {counter}</p>
+        <button onClick={() => setCounter(counter + 1)}>Increase</button>
+        <button onClick={() => setCounter(counter - 1)}>Decrease</button>
+      </div>
+    );
+  }
+```
