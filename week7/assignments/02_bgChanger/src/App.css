@@ -1,0 +1,13 @@
+.bottom {
+  display: flex;
+  border: none;
+  justify-content: space-around;
+  align-items: end;
+  height: 90vh;
+  background-color: transparent;
+  border-radius: 4px;
+  padding: 0.5em 1em;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
